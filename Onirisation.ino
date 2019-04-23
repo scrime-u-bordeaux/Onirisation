@@ -4,23 +4,29 @@
  *  modify the folowing variables to fit the number of fans, servos, sensors 
  */
 
-const int servoNum = 2;                     // number of servos
-
-const int fsrNum = 1;                       // number of resistive sensors
+const int servoPins[] = {6, 7};             // servos pins 
 const int fsrAnalogPin[] = {0};             // FSR analog pins
-
-const int ventilNum = 1;                    // number of ventilos
-const int ventilPin[] = {11};               // connect ventilos to PWM pins
-int previousVal[] = {0};                    // initialise all previousVal to 0
+const int ventilPin[] = {11};               // PWM pins
 const int lowVentil[] = {50};               // set lowest limit for driving each ventilos
-const int highVentil[] = {170};             // set lowest limit for driving each ventilos
+const int highVentil[] = {170};             // set highest limit for driving each ventilos
 const unsigned long ventilLag[] = {1000};   // set lag time for driving each ventilos
+
+/*  
+ *  deffault parameters 
+ */
+
+
+int previousVal[] = {0};                    // initialise all previousVal to 0
 unsigned long lastTime[] = {0};             // store date for mesuring durations
 
-Servo myServos[servoNum] ;                  // create servo object to con 
+const int servoNum = sizeof(servoPins) / sizeof(servoPins[0]);        // number of servos
+const int fsrNum = sizeof(fsrAnalogPin) / sizeof(fsrAnalogPin[0]);    // number of resistive sensors
+const int ventilNum = sizeof(ventilPin) / sizeof(ventilPin[0]);       // number of ventilos
+
+Servo myServos[servoNum];                   // create servo objects
 int fsrReading[fsrNum];                     // value sent to score
 int ventilVal[ventilNum];                   // value received from score
-unsigned long timeElapsed;
+unsigned long timeElapsed;                  // keep track of time past
 
 void setup() {
   
@@ -30,7 +36,7 @@ void setup() {
     pinMode(ventilPin[i], OUTPUT);          // define pin as output
   
   for (int i = 0; i < servoNum; i++) {
-    myServos[i].attach(7  i, 800, 2200);   // define servo range
+    myServos[i].attach(servoPins[i], 800, 2200);   // define servo range
     myServos[i].write(90);                  // servo initial value
   }
 }

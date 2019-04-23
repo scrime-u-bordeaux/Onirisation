@@ -1,4 +1,4 @@
-[Cyril Gourva](http://arcolistique.fr/)
+[Cyril Gourvat](http://arcolistique.fr/)
 
 == Step 1: Installation
 Please describe the steps to install this project.

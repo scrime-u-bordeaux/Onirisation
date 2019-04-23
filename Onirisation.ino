@@ -12,7 +12,7 @@ const int highVentil[] = {170};             // set highest limit for driving eac
 const unsigned long ventilLag[] = {1000};   // set lag time for driving each ventilos
 
 /*  
- *  deffault parameters 
+ *  declare and initialize variables 
  */
 
 

@@ -4,9 +4,9 @@
 :Revision: version#
 :License: Public Domain
 
-= Project: {Project}
+= Project: Onirisation
 
-Describe your project
+[Cyril Gourva](http://arcolistique.fr/)
 
 == Step 1: Installation
 Please describe the steps to install this project.

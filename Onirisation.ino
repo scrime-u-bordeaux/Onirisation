@@ -4,20 +4,16 @@
  *  modify the folowing variables to fit the number of fans, servos, sensors 
  */
 
-const int servoPins[] = {6, 7};             // servos pins 
-const int fsrAnalogPin[] = {0};             // FSR analog pins
-const int ventilPin[] = {11};               // PWM pins
-const int lowVentil[] = {50};               // set lowest limit for driving each ventilos
-const int highVentil[] = {170};             // set highest limit for driving each ventilos
-const unsigned long ventilLag[] = {1000};   // set lag time for driving each ventilos
+const int servoPins[] = {2, 4, 7};       // non PWM pins for servos  
+const int fsrAnalogPin[] = {0};          // FSR analog pins
+const int ventilPin[] = {3, 5, 6};       // PWM pins for ventilos
+const int lowTresh = 10;                 // set lowest limit for driving ventilos
+const int highTresh = 170;               // set highest limit for driving ventilos
+const unsigned long lagTime = 1000;      // set lag time for driving each ventilos
 
-/*  
- *  declare and initialize variables 
+/*  ventilVal
+ *  deffault parameters 
  */
-
-
-int previousVal[] = {0};                    // initialise all previousVal to 0
-unsigned long lastTime[] = {0};             // store date for mesuring durations
 
 const int servoNum = sizeof(servoPins) / sizeof(servoPins[0]);        // number of servos
 const int fsrNum = sizeof(fsrAnalogPin) / sizeof(fsrAnalogPin[0]);    // number of resistive sensors
@@ -26,18 +22,24 @@ const int ventilNum = sizeof(ventilPin) / sizeof(ventilPin[0]);       // number 
 Servo myServos[servoNum];                   // create servo objects
 int fsrReading[fsrNum];                     // value sent to score
 int ventilVal[ventilNum];                   // value received from score
+int previousVal[ventilNum];                 // keep track of previous vlaues
 unsigned long timeElapsed;                  // keep track of time past
+unsigned long lastTime[ventilNum];          // store date for mesuring durations
 
 void setup() {
   
   Serial.begin(9600);                       // set baud rate
   
-  for (int i = 0; i < ventilNum; i++)
-    pinMode(ventilPin[i], OUTPUT);          // define pin as output
+  for (int i = 0; i < ventilNum; i++) {
+    pinMode(ventilPin[i], OUTPUT);         // define pin as output
+    previousVal[i] = 0;                    // initialise all previousVal to 0
+    lastTime[i] = 0;                       // initialise all lastTimes to 0
+    ventilVal[i] = 0;                      // initialise all ventilVal to 0
+  }
   
   for (int i = 0; i < servoNum; i++) {
     myServos[i].attach(servoPins[i], 800, 2200);   // define servo range
-    myServos[i].write(90);                  // servo initial value
+    myServos[i].writeMicroseconds(800);            // servo initial value
   }
 }
 
@@ -61,23 +63,34 @@ void loop() {
       myServos[0].writeMicroseconds(
         map(Serial.parseInt(), 0, 150, 800, 2200) 
         );
-      case 'r':
+      case 'c':
       myServos[1].writeMicroseconds(
+        map(Serial.parseInt(), 0, 150, 800, 2200) 
+        );
+      break;
+      case 'r':
+      myServos[2].writeMicroseconds(
         map(Serial.parseInt(), 0, 150, 800, 2200) 
         );
       break;
       case 'v': 
       ventilVal[0] = Serial.parseInt();
       break;
+      case 'w': 
+      ventilVal[1] = Serial.parseInt();
+      break;
+      case 'x': 
+      ventilVal[2] = Serial.parseInt();
+      break;
     }
   }
   
   for (int i = 0; i < ventilNum; i++) { 
-    if ((timeElapsed - lastTime[i]) >= ventilLag[i]) {
-      if (needStarter(ventilVal[i], previousVal[i], lowVentil[i], highVentil[i])) {
+    if ((timeElapsed - lastTime[i]) >= lagTime) {
+      if (needStarter(ventilVal[i], previousVal[i])) {
         analogWrite(ventilPin[i], 255);
         lastTime[i] = timeElapsed;
-      } else {
+        } else {
         analogWrite(ventilPin[i], ventilVal[i]);
       }
     }
@@ -87,7 +100,7 @@ void loop() {
   delay(1);
 }
 
-bool needStarter(int val, int &prev, int lowTresh , int highTresh) {
+bool needStarter(int val, int &prev) {
   
   if ((val >= lowTresh) && (val < highTresh)) {
     if (prev < highTresh) {

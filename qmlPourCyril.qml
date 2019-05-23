@@ -35,23 +35,63 @@ Ossia.Serial
             repetition_filter: Ossia.Repetitions.Filtered
         },
         {
-            name: "Servo",
+            name: "ServoL",
             type:  Ossia.Type.Int,
             min: 0,
             max: 150,
             access: Ossia.Access.Set,
             bounding: Ossia.Bounding.Clip,
-            request: "s$val",
+            request: "l$val",
             repetition_filter: Ossia.Repetitions.Filtered
         },
         {
-            name: "Ventilo",
+            name: "ServoC",
+            type:  Ossia.Type.Int,
+            min: 0,
+            max: 150,
+            access: Ossia.Access.Set,
+            bounding: Ossia.Bounding.Clip,
+            request: "c$val",
+            repetition_filter: Ossia.Repetitions.Filtered
+        },
+        {
+            name: "ServoR",
+            type:  Ossia.Type.Int,
+            min: 0,
+            max: 150,
+            access: Ossia.Access.Set,
+            bounding: Ossia.Bounding.Clip,
+            request: "r$val",
+            repetition_filter: Ossia.Repetitions.Filtered
+        },
+        {
+            name: "VentiloV",
             type:  Ossia.Type.Int,
             min: 0,
             max: 255,
             access: Ossia.Access.Set,
             bounding: Ossia.Bounding.Clip,
             request: "v$val",
+            repetition_filter: Ossia.Repetitions.Filtered
+        },
+        {
+            name: "VentiloW",
+            type:  Ossia.Type.Int,
+            min: 0,
+            max: 255,
+            access: Ossia.Access.Set,
+            bounding: Ossia.Bounding.Clip,
+            request: "w$val",
+            repetition_filter: Ossia.Repetitions.Filtered
+        },
+        {
+            name: "VentiloX",
+            type:  Ossia.Type.Int,
+            min: 0,
+            max: 255,
+            access: Ossia.Access.Set,
+            bounding: Ossia.Bounding.Clip,
+            request: "x$val",
             repetition_filter: Ossia.Repetitions.Filtered
         }
         ];

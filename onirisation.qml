@@ -35,6 +35,16 @@ Ossia.Serial
             repetition_filter: Ossia.Repetitions.Filtered
         },
         {
+            name: "PanelLed",
+            type:  Ossia.Type.Int,
+            min: 0,
+            max: 255,
+            access: Ossia.Access.Set,
+            bounding: Ossia.Bounding.Clip,
+            request: "p$val",
+            repetition_filter: Ossia.Repetitions.Filtered
+        },
+        {
             name: "ServoL",
             type:  Ossia.Type.Int,
             min: 0,

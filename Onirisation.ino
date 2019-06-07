@@ -4,10 +4,11 @@
  *  modify the folowing variables to fit the number of fans, servos, sensors 
  */
 
+const int panelPin = 11;                 // led panel pin
 const int servoPins[] = {2, 4, 7};       // non PWM pins for servos  
 const int fsrAnalogPin[] = {0};          // FSR analog pins
 const int ventilPin[] = {3, 5, 6};       // PWM pins for ventilos
-const int lowTresh = 10;                 // set lowest limit for driving ventilos
+const int lowTresh = 30;                 // set lowest limit for driving ventilos
 const int highTresh = 170;               // set highest limit for driving ventilos
 const unsigned long lagTime = 1000;      // set lag time for driving each ventilos
 
@@ -41,6 +42,9 @@ void setup() {
     myServos[i].attach(servoPins[i], 800, 2200);   // define servo range
     myServos[i].writeMicroseconds(800);            // servo initial value
   }
+      
+  pinMode(panelPin, OUTPUT);         // define pin as output
+
 }
 
 void loop() {
@@ -59,6 +63,9 @@ void loop() {
   
   while (Serial.available() > 0) {    
     switch (Serial.read()) {                // switch for the folowing characters 
+      case 'p': 
+      analogWrite(panelPin, Serial.parseInt());
+      break;  
       case 'l':
       myServos[0].writeMicroseconds(
         map(Serial.parseInt(), 0, 150, 800, 2200) 

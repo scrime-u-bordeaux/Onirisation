@@ -2,7 +2,7 @@
     "Document": {
         "BaseScenario": {
             "Constraint": {
-                "Center": 14488.075396611326,
+                "Center": 10746.374517427306,
                 "Components": [
                 ],
                 "DefaultDuration": 26465.478841870823,
@@ -12,7 +12,7 @@
                         "Process": 1
                     }
                 ],
-                "GuiDuration": 29031.18040089087,
+                "GuiDuration": 39403.373230566795,
                 "HeightPercentage": 0,
                 "Inlet": {
                     "Address": {
@@ -643,7 +643,7 @@
                                                     ],
                                                     "Unit": "none",
                                                     "address": {
-                                                        "Device": "newDevice",
+                                                        "Device": "arduino",
                                                         "Path": "PanelLed"
                                                     }
                                                 },
@@ -858,7 +858,7 @@
                                                 ],
                                                 "Unit": "none",
                                                 "address": {
-                                                    "Device": "newDevice",
+                                                    "Device": "arduino",
                                                     "Path": "VentiloV"
                                                 }
                                             },
@@ -1556,6 +1556,23 @@
                                             "Accessors": [
                                             ],
                                             "Children": [
+                                            ],
+                                            "Following": [
+                                            ],
+                                            "Name": "newDevice",
+                                            "Previous": [
+                                            ],
+                                            "Priorities": [
+                                                1,
+                                                2,
+                                                0
+                                            ],
+                                            "Unit": "none"
+                                        },
+                                        {
+                                            "Accessors": [
+                                            ],
+                                            "Children": [
                                                 {
                                                     "Accessors": [
                                                     ],
@@ -1582,7 +1599,7 @@
                                             ],
                                             "Following": [
                                             ],
-                                            "Name": "newDevice",
+                                            "Name": "arduino",
                                             "Previous": [
                                             ],
                                             "Priorities": [
@@ -1632,6 +1649,23 @@
                                             "Accessors": [
                                             ],
                                             "Children": [
+                                            ],
+                                            "Following": [
+                                            ],
+                                            "Name": "newDevice",
+                                            "Previous": [
+                                            ],
+                                            "Priorities": [
+                                                1,
+                                                2,
+                                                0
+                                            ],
+                                            "Unit": "none"
+                                        },
+                                        {
+                                            "Accessors": [
+                                            ],
+                                            "Children": [
                                                 {
                                                     "Accessors": [
                                                     ],
@@ -1658,7 +1692,7 @@
                                             ],
                                             "Following": [
                                             ],
-                                            "Name": "newDevice",
+                                            "Name": "arduino",
                                             "Previous": [
                                             ],
                                             "Priorities": [
@@ -1767,7 +1801,7 @@
                                             ],
                                             "Following": [
                                             ],
-                                            "Name": "newDevice",
+                                            "Name": "arduino",
                                             "Previous": [
                                             ],
                                             "Priorities": [
@@ -1840,7 +1874,7 @@
                                             ],
                                             "Following": [
                                             ],
-                                            "Name": "newDevice",
+                                            "Name": "arduino",
                                             "Previous": [
                                             ],
                                             "Priorities": [
@@ -1913,7 +1947,7 @@
                                             ],
                                             "Following": [
                                             ],
-                                            "Name": "newDevice",
+                                            "Name": "arduino",
                                             "Previous": [
                                             ],
                                             "Priorities": [
@@ -2347,7 +2381,7 @@
                 "SmallViewShown": false,
                 "StartDate": 0,
                 "StartState": 0,
-                "Zoom": 36.67867189015526,
+                "Zoom": 55.970700611600556,
                 "id": 0
             },
             "EndEvent": {
@@ -2726,7 +2760,8 @@
                                 },
                                 "Name": "in",
                                 "RepetitionFilter": false,
-                                "Unit": "none"
+                                "Unit": "none",
+                                "ioType": "<->"
                             },
                             "Children": [
                                 {
@@ -2788,7 +2823,8 @@
                                 },
                                 "Name": "out",
                                 "RepetitionFilter": false,
-                                "Unit": "none"
+                                "Unit": "none",
+                                "ioType": "<->"
                             },
                             "Children": [
                                 {
@@ -2901,7 +2937,7 @@
                 {
                     "DeviceSettings": {
                         "Name": "arduino",
-                        "Port": "55639303035351D05290",
+                        "Port": "64938323331351714041",
                         "Protocol": "50c48ef3-8e60-400e-9a51-2ab535ad87eb",
                         "Text": "/*\n * This example comunicates with the arduino sketch of the same name\n * you can find this corresponding example sketch on the arduino website\n * visit: https://www.arduino.cc/en/Tutorial/BuiltInExamples\n * These examples are included in the Arduino IDE\n * as well as in the Web Editor under Examples/BUILT IN\n * for any issue on the ossia-score side, please report to:\n * https://github.com/OSSIA/score-user-library/issues\n */\n\nimport QtQuick 2.0\nimport Ossia 1.0 as Ossia\n\nOssia.Serial\n{\n    function openListening(address) {}\n    function closeListening(address) {}\n\n    function onMessage(message) { // evaluated each time a message is received\n\n\t//console.log(message);\n\n    return [{ address: \"/FSR\", value: parseInt(message) }];\n    }\n\n    function createTree() {\n        return [\n        {\n            name: \"FSR\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 1023,\n            access: Ossia.Access.Get,\n            bounding: Ossia.Bounding.Clip,\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"PanelLed\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 255,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"p$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"ServoL\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 150,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"l$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"ServoC\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 150,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"c$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"ServoR\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 150,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"r$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"VentiloV\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 255,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"v$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"VentiloW\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 255,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"w$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        },\n        {\n            name: \"VentiloX\",\n            type:  Ossia.Type.Int,\n            min: 0,\n            max: 255,\n            access: Ossia.Access.Set,\n            bounding: Ossia.Bounding.Clip,\n            request: \"x$val\",\n            repetition_filter: Ossia.Repetitions.Filtered\n        }\n        ];\n    }\n}\n"
                     }

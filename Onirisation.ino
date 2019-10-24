@@ -68,16 +68,17 @@ void loop() {
       break;  
       case 'l':
       myServos[0].writeMicroseconds(
-        map(Serial.parseInt(), 0, 150, 800, 2200) 
+        map(Serial.parseInt(), 0, 90, 800, 2200) 
         );
+      break;
       case 'c':
       myServos[1].writeMicroseconds(
-        map(Serial.parseInt(), 0, 150, 800, 2200) 
+        map(Serial.parseInt(), 0, 90, 800, 2200) 
         );
       break;
       case 'r':
       myServos[2].writeMicroseconds(
-        map(Serial.parseInt(), 0, 150, 800, 2200) 
+        map(Serial.parseInt(), 0, 90, 800, 2200) 
         );
       break;
       case 'v': 

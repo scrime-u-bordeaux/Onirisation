@@ -30,7 +30,7 @@
 127.0.0.1:9996/ITL/scene/Video_1/vdate 0;
 127.0.0.1:9996/ITL/scene/Video_1/loop 0;
 
-/ITL/scene/Video_2 set video '/Users/admin/Pictures/EPS1_1.mp4';
+/ITL/scene/Video_2 set video '/Users/nouveau/Movies/Rituel_1.mp4';
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/scale' scale;
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/play' play;
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/rate' rate;
@@ -39,7 +39,7 @@
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/y' y;
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/z' z;
 /ITL/scene/Video_2 alias '/ITL/scene/Video_2/vdate' vdate;
-/ITL/scene/Video_1 alias '/ITL/scene/Video_2/loop' loop;
+/ITL/scene/Video_2 alias '/ITL/scene/Video_2/loop' loop;
 127.0.0.1:9996/ITL/scene/Video_2 "" "";
 127.0.0.1:9996/ITL/scene/Video_2/scale 1.;
 127.0.0.1:9996/ITL/scene/Video_2/play 1;
@@ -51,6 +51,26 @@
 127.0.0.1:9996/ITL/scene/Video_2/vdate 0;
 127.0.0.1:9996/ITL/scene/Video_2/loop 0;
 
+/ITL/scene/Video_3 set video '/Users/nouveau/Movies/ClipCollege.mp4';
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/scale' scale;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/play' play;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/rate' rate;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/alpha' alpha;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/x' x;	
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/y' y;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/z' z;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/vdate' vdate;
+/ITL/scene/Video_3 alias '/ITL/scene/Video_3/loop' loop;
+127.0.0.1:9996/ITL/scene/Video_3 "" "";
+127.0.0.1:9996/ITL/scene/Video_3/scale 1.;
+127.0.0.1:9996/ITL/scene/Video_3/play 1;
+127.0.0.1:9996/ITL/scene/Video_3/rate 1.;
+127.0.0.1:9996/ITL/scene/Video_3/alpha 1.;
+127.0.0.1:9996/ITL/scene/Video_3/x 0.;
+127.0.0.1:9996/ITL/scene/Video_3/y 0.;
+127.0.0.1:9996/ITL/scene/Video_3/z 0.;
+127.0.0.1:9996/ITL/scene/Video_3/vdate 0;
+127.0.0.1:9996/ITL/scene/Video_3/loop 0;
 
 # envoie le nom de la série une fois chargée
 /ITL/scene watch endPaint (147.210.110.86:9997/ITL/scene/Serie "Video");

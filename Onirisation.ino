@@ -11,6 +11,8 @@ const int ventilPin[] = {3, 5, 6};       // PWM pins for ventilos
 const int lowTresh = 30;                 // set lowest limit for driving ventilos
 const int highTresh = 170;               // set highest limit for driving ventilos
 const unsigned long lagTime = 1000;      // set lag time for driving each ventilos
+const int noDialPin = 9;
+const int countPin = 10;
 
 /*  ventilVal
  *  deffault parameters 
@@ -26,6 +28,8 @@ int ventilVal[ventilNum];                   // value received from score
 int previousVal[ventilNum];                 // keep track of previous vlaues
 unsigned long timeElapsed;                  // keep track of time past
 unsigned long lastTime[ventilNum];          // store date for mesuring durations
+int count = 0;
+int prevState = 0; 
 
 void setup() {
   
@@ -40,17 +44,19 @@ void setup() {
   
   for (int i = 0; i < servoNum; i++) {
     myServos[i].attach(servoPins[i], 800, 2200);   // define servo range
-    myServos[i].writeMicroseconds(800);            // servo initial value
+    myServos[i].writeMicroseconds(1500);            // servo initial value
   }
       
   pinMode(panelPin, OUTPUT);         // define pin as output
+  pinMode(noDialPin, INPUT_PULLUP);    // define pin as inpout
+  pinMode(countPin, INPUT_PULLUP);    // define pin as inpout
 
 }
 
 void loop() {
   
   timeElapsed = millis();                   // update current date
-  
+  /*
   for (int i = 0; i < fsrNum; i++) {
     fsrReading[i] = analogRead(fsrAnalogPin[i]);
     Serial.print(fsrReading[i]);            // read anog pin and send it through serial
@@ -60,6 +66,22 @@ void loop() {
       Serial.print(',');
     }
   }
+ */
+
+ if(!digitalRead(noDialPin)) {
+  int curentState = digitalRead(countPin);
+  if((curentState == 0) && (prevState == 1)) {
+    count++;
+  }
+  prevState = curentState;
+ } else {
+  if(count != 0) {
+    Serial.println(count - 1);
+    count = 0;
+  } 
+ }
+
+// Serial.print(digitalRead(dialPin)) ; 
   
   while (Serial.available() > 0) {    
     switch (Serial.read()) {                // switch for the folowing characters 

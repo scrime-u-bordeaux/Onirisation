@@ -8,7 +8,7 @@
  * https://github.com/OSSIA/score-user-library/issues
  */
 
-import QtQuick 2.0
+import Score 1.0
 import Ossia 1.0 as Ossia
 
 Ossia.Serial
@@ -48,7 +48,7 @@ Ossia.Serial
             name: "ServoL",
             type:  Ossia.Type.Int,
             min: 0,
-            max: 150,
+            max: 90,
             access: Ossia.Access.Set,
             bounding: Ossia.Bounding.Clip,
             request: "l$val",
@@ -58,7 +58,7 @@ Ossia.Serial
             name: "ServoC",
             type:  Ossia.Type.Int,
             min: 0,
-            max: 150,
+            max: 90,
             access: Ossia.Access.Set,
             bounding: Ossia.Bounding.Clip,
             request: "c$val",
@@ -68,7 +68,7 @@ Ossia.Serial
             name: "ServoR",
             type:  Ossia.Type.Int,
             min: 0,
-            max: 150,
+            max: 90,
             access: Ossia.Access.Set,
             bounding: Ossia.Bounding.Clip,
             request: "r$val",
@@ -76,31 +76,22 @@ Ossia.Serial
         },
         {
             name: "VentiloV",
-            type:  Ossia.Type.Int,
-            min: 0,
-            max: 255,
+            type:  Ossia.Type.Bool,
             access: Ossia.Access.Set,
-            bounding: Ossia.Bounding.Clip,
             request: "v$val",
             repetition_filter: Ossia.Repetitions.Filtered
         },
         {
             name: "VentiloW",
-            type:  Ossia.Type.Int,
-            min: 0,
-            max: 255,
+            type:  Ossia.Type.Bool,
             access: Ossia.Access.Set,
-            bounding: Ossia.Bounding.Clip,
             request: "w$val",
             repetition_filter: Ossia.Repetitions.Filtered
         },
         {
             name: "VentiloX",
-            type:  Ossia.Type.Int,
-            min: 0,
-            max: 255,
+            type:  Ossia.Type.Bool,
             access: Ossia.Access.Set,
-            bounding: Ossia.Bounding.Clip,
             request: "x$val",
             repetition_filter: Ossia.Repetitions.Filtered
         }
